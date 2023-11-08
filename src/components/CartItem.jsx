@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import { IoMdAdd, IoMdClose, IoMdRemove } from "react-icons/io";
+import { CartContext } from "../contexts/CartContext";
+import { useContext } from "react";
 
 function CartItem({ item }) {
   const { id, title, image, price, amount } = item;
+  const { removeFromCart, increaseAmount, decreaseAmount } =
+    useContext(CartContext);
   return (
-    <div className="flex">
+    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-slate-200 w-full font-light text-slate-500">
       {/* image */}
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
         <Link to={`/product/${id}`}>
@@ -22,7 +26,10 @@ function CartItem({ item }) {
               {title}
             </Link>
             {/* remove icon */}
-            <div className="text-xl cursor-pointer">
+            <div
+              onClick={() => removeFromCart(id)}
+              className="text-xl cursor-pointer"
+            >
               <IoMdClose className="text-slate-500 hover:text-red-500 transition" />
             </div>
           </div>
@@ -30,15 +37,21 @@ function CartItem({ item }) {
             {/* quantity */}
             <div className="flex flex-1 max-w-[100px] items-center border text-primary font-medium">
               {/* minus icon */}
-              <div className="flex-1 h-full flex items-center justify-center cursor-pointer">
+              <div
+                onClick={() => decreaseAmount(id)}
+                className="flex-1 h-full flex items-center justify-center cursor-pointer"
+              >
                 <IoMdRemove />
               </div>
               {/* amount */}
-              <div className="flex h-full justify-center items-center px-2">
+              <div className="h-full flex justify-center items-center px-2">
                 {amount}
               </div>
               {/* plus icon */}
-              <div className="flex-1 h-full flex items-center justify-center cursor-pointer">
+              <div
+                onClick={() => increaseAmount(id)}
+                className="flex-1 h-full flex items-center justify-center cursor-pointer"
+              >
                 <IoMdAdd />
               </div>
             </div>
