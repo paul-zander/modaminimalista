@@ -8,7 +8,7 @@ import { CartContext } from "../contexts/CartContext.jsx";
 
 function Sidebar() {
   const { isOpen, handleCloseSidebar } = useContext(SidebarContext);
-  const { cart, clearCart, total } = useContext(CartContext);
+  const { cart, clearCart, total, itemAmount } = useContext(CartContext);
 
   return (
     <div
@@ -17,7 +17,9 @@ function Sidebar() {
       } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]`}
     >
       <div className="flex justify-between items-center py-5 border-b">
-        <div className="uppercase text-sm font-semibold">Shopping Bag (0)</div>
+        <div className="uppercase text-sm font-semibold">
+          Shopping Bag ({itemAmount})
+        </div>
         <div
           onClick={handleCloseSidebar}
           className="cursor-pointer w-8 h-8 flex justify-center items-center"
@@ -40,7 +42,7 @@ function Sidebar() {
           {/* clear cart icon */}
           <div
             onClick={clearCart}
-            className="cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl"
+            className="cursor-pointer py-4 bg-red-500 hover:bg-red-400 active:bg-red-200 text-white w-12 h-12 flex justify-center items-center text-xl"
           >
             <FiTrash2 />
           </div>

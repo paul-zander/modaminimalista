@@ -4,7 +4,7 @@ import { SidebarContext } from "../contexts/SidebarContext";
 import { CartContext } from "../contexts/CartContext";
 import { BsBag } from "react-icons/bs";
 import Logo from "../assets/images/logo.svg";
-import Hero from "../components/Hero";
+
 function Header() {
   const [isActive, setIsActive] = useState(false);
   const { isOpen, setIsOpen } = useContext(SidebarContext);
@@ -26,10 +26,10 @@ function Header() {
     <>
       <header
         className={`${
-          isActive ? "bg-slate-100 py-4 shadow-md" : "bg-none py-6"
+          isActive ? "bg-slate-100 py-4 shadow-md" : "bg-none p-6"
         } fixed w-full z-10 translate-all duration-300`}
       >
-        <div className="container mx-auto flex items-center justify-between h-full">
+        <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between h-full">
           {/* logo */}
           <Link to={"/"}>
             <div>
@@ -39,16 +39,15 @@ function Header() {
           {/* cart */}
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className="cursor-pointer flex relative"
+            className="cursor-pointer flex relative py-2 sm:py-0"
           >
-            <BsBag className="text-2xl" />
+            <BsBag className="text-2xl " />
             <div className="bg-slate-800 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
               {itemAmount}
             </div>
           </div>
         </div>
       </header>
-      <Hero />
     </>
   );
 }
