@@ -15,8 +15,6 @@ function ProductDetails() {
 
   const product = products.find((product) => product.id === +id);
 
-  console.log(product);
-
   if (!product) {
     return (
       <section className="h-screen flex justify-center items-center">
