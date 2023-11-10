@@ -31,7 +31,11 @@ function Sidebar() {
         {cart.map((item, index) => (
           <CartItem
             item={item}
-            key={`${item.id}-${item.selectedSizes.join("-")}-${index}`}
+            key={
+              item.selectedSizes
+                ? `${item.id}-${item.selectedSizes.join("-")}-${index}`
+                : item.id
+            }
           />
         ))}
       </div>

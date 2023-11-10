@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { ModalContext } from "./ModalContext";
 
 const CartContext = createContext();
 
@@ -6,6 +7,7 @@ function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
   const [itemAmount, setItemAmount] = useState(0);
   const [total, setTotal] = useState(0);
+  const { setIsVisible } = useContext(ModalContext);
 
   useEffect(() => {
     const total = cart.reduce(
@@ -20,7 +22,66 @@ function CartProvider({ children }) {
     setItemAmount(amount);
   }, [cart]);
 
+  // function checkIfSizeSelected(selectedSize) {
+  //   if (!selectedSize) {
+  //   }
+  // }
+
+  // function addToCartIfNoSizes(product, id) {
+  //   if (!product.availableSizes) {
+  //     const existingItem = cart.find((item) => item.id === id);
+  //     if (existingItem) {
+  //       setCart([
+  //         ...cart,
+  //         { ...existingItem, amount: existingItem.amount + 1 },
+  //       ]);
+  //     } else {
+  //       setCart([...cart, { ...product, amount: product.amount + 1 }]);
+  //     }
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  function addToCartIfNoSizes(product, id) {
+    console.log(id);
+    if (!product.availableSizes) {
+      const existingItem = cart.find((item) => item.id === +id);
+      console.log(existingItem);
+
+      if (existingItem) {
+        setCart(
+          cart.map((item) =>
+            item.id === +id
+              ? { ...existingItem, amount: existingItem.amount + 1 }
+              : item
+          )
+        );
+      } else {
+        setCart([...cart, { ...product, amount: 1 }]);
+      }
+
+      return true;
+    }
+
+    return false;
+  }
+
   function addToCart(product, id, selectedSize) {
+    // if (!product.availableSizes) {
+    //   setCart([...cart, { ...product, amount: 1 }]);
+    //   return;
+    // }
+
+    if (addToCartIfNoSizes(product, id)) {
+      return;
+    }
+
+    if (!selectedSize) {
+      setIsVisible(true);
+      return;
+    }
+
     const existingItem = cart.find(
       (item) => item.id === id && item.selectedSizes.includes(selectedSize)
     );
@@ -46,6 +107,8 @@ function CartProvider({ children }) {
     }
   }
 
+  console.log(cart);
+
   function removeFromCart(id) {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
@@ -55,13 +118,34 @@ function CartProvider({ children }) {
     setCart([]);
   }
 
+  // function increaseAmount(id) {
+  //   const cartItem = cart.find((item) => item.id === id);
+  //   console.log(cartItem);
+  //   const size = cartItem.selectedSizes[0];
+  //   // console.log(size);
+
+  //   if (!size) {
+  //     addToCart(cartItem, id);
+  //   } else {
+  //     addToCart(cartItem, id, cartItem.selectedSizes[0]);
+  //   }
+  // }
+
   function increaseAmount(id) {
     const cartItem = cart.find((item) => item.id === id);
-    const size = cartItem.selectedSizes[0];
-    console.log(size);
 
-    addToCart(cartItem, id, cartItem.selectedSizes[0]);
-    console.log(cart);
+    if (cartItem) {
+      const size = cartItem.selectedSizes && cartItem.selectedSizes[0];
+
+      if (!size) {
+        addToCart(cartItem, id);
+      } else {
+        addToCart(cartItem, id, size);
+      }
+    } else {
+      // Handle the case when cartItem is undefined
+      console.error("Invalid cart item");
+    }
   }
 
   function decreaseAmount(id) {

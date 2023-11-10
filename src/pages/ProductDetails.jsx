@@ -24,6 +24,14 @@ function ProductDetails() {
     );
   }
 
+  function handleAddToCart() {
+    if (product.id === 1) {
+      addToCart(product, id);
+    } else {
+      addToCart(product, `${product.id}-${selectedSize}`, selectedSize);
+    }
+  }
+
   const { title, price, description, image } = product;
 
   function handleSelectedSize(size) {
@@ -48,48 +56,44 @@ function ProductDetails() {
             </div>
             <p className="mb-8">{description}</p>
             <div className="flex gap-4 flex-col max-w-sm">
-              <div className="flex gap-2">
-                <button
-                  onClick={() => handleSelectedSize("S")}
-                  className={`${
-                    selectedSize === "S" && "border-black"
-                  } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
-                >
-                  S
-                </button>
-                <button
-                  onClick={() => handleSelectedSize("M")}
-                  className={`${
-                    selectedSize === "M" && "border-black"
-                  } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
-                >
-                  M
-                </button>
-                <button
-                  onClick={() => handleSelectedSize("L")}
-                  className={`${
-                    selectedSize === "L" && "border-black"
-                  } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
-                >
-                  L
-                </button>
-                <button
-                  onClick={() => handleSelectedSize("XL")}
-                  className={`${
-                    selectedSize === "XL" && "border-black"
-                  } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
-                >
-                  XL
-                </button>
-              </div>
+              {product.id !== 1 && (
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => handleSelectedSize("S")}
+                    className={`${
+                      selectedSize === "S" && "border-black"
+                    } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
+                  >
+                    S
+                  </button>
+                  <button
+                    onClick={() => handleSelectedSize("M")}
+                    className={`${
+                      selectedSize === "M" && "border-black"
+                    } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
+                  >
+                    M
+                  </button>
+                  <button
+                    onClick={() => handleSelectedSize("L")}
+                    className={`${
+                      selectedSize === "L" && "border-black"
+                    } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
+                  >
+                    L
+                  </button>
+                  <button
+                    onClick={() => handleSelectedSize("XL")}
+                    className={`${
+                      selectedSize === "XL" && "border-black"
+                    } flex flex-1 justify-center border-2 w-[60px] p-2 text-center text-primary`}
+                  >
+                    XL
+                  </button>
+                </div>
+              )}
               <button
-                onClick={() =>
-                  addToCart(
-                    product,
-                    `${product.id}-${selectedSize}`,
-                    selectedSize
-                  )
-                }
+                onClick={handleAddToCart}
                 className="bg-primary hover:bg-slate-700 active:bg-slate-500 py-4 px-8 text-white"
               >
                 Add to cart

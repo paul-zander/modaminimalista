@@ -22,10 +22,11 @@ function ProductProvider({ children }) {
         product.id !== 1 // product with id === 1 is a bag
           ? {
               ...product,
+              amount: 0,
               availableSizes: { S: "S", M: "M", L: "L", XL: "XL" },
               selectedSizes: [],
             }
-          : product
+          : { ...product, amount: 0 }
       );
 
       setProducts(productsWithSizes);
