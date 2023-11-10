@@ -28,8 +28,11 @@ function Sidebar() {
         </div>
       </div>
       <div className="flex flex-col gap-y-2 h-[520px] lg:h-[640px] overflow-y-auto overflow-x-hidden border-b">
-        {cart.map((item) => (
-          <CartItem item={item} key={item.id} />
+        {cart.map((item, index) => (
+          <CartItem
+            item={item}
+            key={`${item.id}-${item.selectedSizes.join("-")}-${index}`}
+          />
         ))}
       </div>
       <div className="flex flex-col gap-y-3 py-2">

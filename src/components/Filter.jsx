@@ -15,14 +15,14 @@ function Filter() {
     setProducts(
       allClothing.filter((product) => product.category === "women's clothing")
     );
-    setIsActive("women");
+    setIsActive("woman");
   }
 
   function handleFilterMensClothing() {
     setProducts(
       allClothing.filter((product) => product.category === "men's clothing")
     );
-    setIsActive("men");
+    setIsActive("man");
   }
 
   return (
@@ -38,18 +38,18 @@ function Filter() {
       <button
         onClick={handleFilterWomensClothing}
         className={`${
-          isActive === "women" ? "border-black text-black" : ""
+          isActive === "woman" ? "border-black text-black" : ""
         } border-2 border-gray-400 text-base text-gray-400 active:bg-slate-500 flex justify-center items-center py-2 px-8 transition-all`}
       >
-        Women
+        Woman
       </button>
       <button
         onClick={handleFilterMensClothing}
         className={`${
-          isActive === "men" ? "border-black text-black" : ""
-        } border-2 border-gray-400 text-base text-gray-400 active:bg-slate-500 flex justify-center items-center py-2 px-8 transition-all`}
+          isActive === "man" ? "border-black text-black" : ""
+        } border-2 border-gray-400 text-base text-gray-400 active:bg-slate-500 flex justify-center items-center py-2 px-8 transition-all `}
       >
-        Men
+        Man
       </button>
     </div>
   );

@@ -20,7 +20,11 @@ function ProductProvider({ children }) {
 
       const productsWithSizes = filteredProducts.map((product) =>
         product.id !== 1 // product with id === 1 is a bag
-          ? { ...product, sizes: { S: "S", M: "M", L: "L", XL: "XL" } }
+          ? {
+              ...product,
+              availableSizes: { S: "S", M: "M", L: "L", XL: "XL" },
+              selectedSizes: [],
+            }
           : product
       );
 

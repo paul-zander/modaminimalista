@@ -20,18 +20,29 @@ function CartProvider({ children }) {
     setItemAmount(amount);
   }, [cart]);
 
-  function addToCart(product, id) {
-    const newItem = { ...product, amount: 1 };
-    const cartItem = cart.find((item) => item.id === id);
+  function addToCart(product, id, selectedSize) {
+    const existingItem = cart.find(
+      (item) => item.id === id && item.selectedSizes.includes(selectedSize)
+    );
 
-    if (cartItem) {
+    if (existingItem) {
       setCart(
         cart.map((item) =>
-          item.id === id ? { ...cartItem, amount: cartItem.amount + 1 } : item
+          item.id === id && item.selectedSizes.includes(selectedSize)
+            ? { ...item, amount: item.amount + 1 }
+            : item
         )
       );
     } else {
-      setCart([...cart, newItem]);
+      setCart((prevCart) => [
+        ...prevCart,
+        {
+          ...product,
+          amount: 1,
+          id: `${product.id}-${selectedSize}`,
+          selectedSizes: [selectedSize],
+        },
+      ]);
     }
   }
 
@@ -46,7 +57,11 @@ function CartProvider({ children }) {
 
   function increaseAmount(id) {
     const cartItem = cart.find((item) => item.id === id);
-    addToCart(cartItem, id);
+    const size = cartItem.selectedSizes[0];
+    console.log(size);
+
+    addToCart(cartItem, id, cartItem.selectedSizes[0]);
+    console.log(cart);
   }
 
   function decreaseAmount(id) {

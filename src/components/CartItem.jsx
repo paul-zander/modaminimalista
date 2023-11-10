@@ -4,9 +4,10 @@ import { CartContext } from "../contexts/CartContext";
 import { useContext } from "react";
 
 function CartItem({ item }) {
-  const { id, title, image, price, amount } = item;
-  const { removeFromCart, increaseAmount, decreaseAmount } =
+  const { id, title, image, price, amount, selectedSizes } = item;
+  const { cart, removeFromCart, increaseAmount, decreaseAmount } =
     useContext(CartContext);
+
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-slate-200 w-full font-light text-slate-500">
       {/* image */}
@@ -23,7 +24,7 @@ function CartItem({ item }) {
               className="text-sm uppercase font-medium
             max-w-[240px] text-primary hover:text-slate-600"
             >
-              {title}
+              {title} {`Size: ${selectedSizes.join(", ")}`}
             </Link>
             {/* remove icon */}
             <div
