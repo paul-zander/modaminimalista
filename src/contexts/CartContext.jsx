@@ -107,8 +107,6 @@ function CartProvider({ children }) {
     }
   }
 
-  console.log(cart);
-
   function removeFromCart(id) {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);

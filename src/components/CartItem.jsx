@@ -24,7 +24,8 @@ function CartItem({ item }) {
               className="text-sm uppercase font-medium
             max-w-[240px] text-primary hover:text-slate-600"
             >
-              {title} {selectedSizes && `Size: ${selectedSizes.join(", ")}`}
+              {/* {title} {selectedSizes && `Size: ${selectedSizes.join(", ")}`} */}
+              {title} {selectedSizes && `Size: ${selectedSizes.at(0)}`}
             </Link>
             {/* remove icon */}
             <div
