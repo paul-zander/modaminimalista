@@ -43,7 +43,7 @@ function ProductDetails() {
     <section className="h-screen relative pt-[600px] pb-[500px] sm:pt-64 sm:pb-32 lg:py-32 flex items-center">
       <div className="absolute left-[20px] top-[150px] sm:left-[80px] sm:top-[200px] lg:top-[150px] flex items-center gap-3">
         <Link to="/">
-          <IoMdArrowBack size={30} />
+          <IoMdArrowBack size={25} />
         </Link>
       </div>
       <div className="container mx-auto">
