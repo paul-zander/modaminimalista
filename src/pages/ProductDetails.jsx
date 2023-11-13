@@ -3,6 +3,7 @@ import { CartContext } from "../contexts/CartContext.jsx";
 import { ProductContext } from "../contexts/ProductContext.jsx";
 import { useParams } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
+import { Toaster } from "react-hot-toast";
 
 function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState("");
@@ -40,6 +41,7 @@ function ProductDetails() {
   return (
     <section className="h-screen pt-32 pb-12 lg:py-32 flex items-center">
       <div className="container mx-auto">
+        <Toaster />
         {/* image and text wrapper */}
         <div className="flex flex-col lg:flex-row items-center">
           {/* image */}

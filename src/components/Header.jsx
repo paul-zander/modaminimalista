@@ -27,7 +27,7 @@ function Header() {
     <>
       <header
         className={`${
-          isActive ? "bg-slate-100 py-4 shadow-md" : "bg-none p-6"
+          isActive ? "bg-slate-100 p-10 shadow-md" : "bg-none p-6"
         } fixed w-full z-10 translate-all duration-300`}
       >
         <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between h-full">
@@ -37,8 +37,7 @@ function Header() {
               <img className="h-[60px]" src={Logo} alt="" />
             </div>
           </Link>
-          {/* searchbar */}
-          <Search isActive={isActive} />
+
           {/* cart */}
           <div
             onClick={() => setIsOpen(!isOpen)}

@@ -19,9 +19,7 @@ function Search({ isActive }) {
       onChange={handleChange}
       type="text"
       placeholder="Search products..."
-      className={`${
-        isActive ? "bg-slate-100 " : "bg-transparent "
-      } border-black placeholder-black w-[300px] px-1 focus:outline-none border-2 placeholder:text-sm`}
+      className="py-2 px-8 border-gray-400 placeholder-gray-400 w-[300px] focus:outline-none border-2 placeholder:text-sm focus:border-black focus:placeholder-black"
     ></input>
   );
 }

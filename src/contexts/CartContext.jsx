@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { ModalContext } from "./ModalContext";
+import toast from "react-hot-toast";
 
 const CartContext = createContext();
 
@@ -60,7 +61,7 @@ function CartProvider({ children }) {
       } else {
         setCart([...cart, { ...product, amount: 1 }]);
       }
-
+      toast.success("Product added to cart");
       return true;
     }
 
@@ -105,6 +106,8 @@ function CartProvider({ children }) {
         },
       ]);
     }
+
+    toast.success("Product added to cart");
   }
 
   function removeFromCart(id) {

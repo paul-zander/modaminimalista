@@ -26,7 +26,7 @@ function Filter() {
   }
 
   return (
-    <div className="container mx-auto sm:gap-[24px] py-12 flex flex-wrap justify-center gap-[12px]">
+    <div className=" sm:gap-[12px] flex flex-wrap justify-center gap-[12px]">
       <button
         onClick={handleFilterAllClothing}
         className={`${
