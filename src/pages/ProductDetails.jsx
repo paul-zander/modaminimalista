@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/CartContext.jsx";
 import { ProductContext } from "../contexts/ProductContext.jsx";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
+import { IoMdArrowBack } from "react-icons/io";
 import { Toaster } from "react-hot-toast";
 
 function ProductDetails() {
@@ -39,7 +40,12 @@ function ProductDetails() {
     setSelectedSize(size);
   }
   return (
-    <section className="h-screen pt-32 pb-12 lg:py-32 flex items-center">
+    <section className="h-screen relative pt-[600px] pb-[500px] sm:pt-64 sm:pb-32 lg:py-32 flex items-center">
+      <div className="absolute left-[20px] top-[150px] sm:left-[80px] sm:top-[200px] lg:top-[150px] flex items-center gap-3">
+        <Link to="/">
+          <IoMdArrowBack size={30} />
+        </Link>
+      </div>
       <div className="container mx-auto">
         <Toaster />
         {/* image and text wrapper */}
