@@ -39,13 +39,15 @@ function Header() {
           </Link>
 
           {/* cart */}
-          <div
-            onClick={() => setIsOpen(!isOpen)}
-            className="cursor-pointer flex relative py-2 sm:py-0 gap-8"
-          >
-            <BsBag className="text-2xl " />
-            <div className="bg-slate-800 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
-              {itemAmount}
+          <div className="flex gap-6 items-center">
+            <div
+              onClick={() => setIsOpen(!isOpen)}
+              className="cursor-pointer flex relative py-2 sm:py-0 gap-8"
+            >
+              <BsBag className="text-2xl " />
+              <div className="bg-slate-800 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center">
+                {itemAmount}
+              </div>
             </div>
           </div>
         </div>

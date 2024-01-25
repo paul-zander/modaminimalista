@@ -69,11 +69,6 @@ function CartProvider({ children }) {
   }
 
   function addToCart(product, id, selectedSize) {
-    // if (!product.availableSizes) {
-    //   setCart([...cart, { ...product, amount: 1 }]);
-    //   return;
-    // }
-
     if (addToCartIfNoSizes(product, id)) {
       return;
     }
@@ -119,19 +114,6 @@ function CartProvider({ children }) {
     setCart([]);
   }
 
-  // function increaseAmount(id) {
-  //   const cartItem = cart.find((item) => item.id === id);
-  //   console.log(cartItem);
-  //   const size = cartItem.selectedSizes[0];
-  //   // console.log(size);
-
-  //   if (!size) {
-  //     addToCart(cartItem, id);
-  //   } else {
-  //     addToCart(cartItem, id, cartItem.selectedSizes[0]);
-  //   }
-  // }
-
   function increaseAmount(id) {
     const cartItem = cart.find((item) => item.id === id);
 
@@ -144,7 +126,6 @@ function CartProvider({ children }) {
         addToCart(cartItem, id, size);
       }
     } else {
-      // Handle the case when cartItem is undefined
       console.error("Invalid cart item");
     }
   }

@@ -4,6 +4,7 @@ import { ProductContext } from "../contexts/ProductContext.jsx";
 import { Link, useParams } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
 import { IoMdArrowBack } from "react-icons/io";
+import { BsBookmark } from "react-icons/bs";
 import { Toaster } from "react-hot-toast";
 
 function ProductDetails() {
@@ -56,10 +57,13 @@ function ProductDetails() {
           </div>
           {/* text */}
           <div className="flex-1 justify-center text-center lg:text-left flex items-center flex-col lg:items-start lg:mr-10">
-            <h1 className="text-[26px] font-medium mb-2 max-w-[450px] mx-auto lg:mx-0">
-              {title}
-            </h1>
-            <div className="text-xl text-slate-500 font-medium mb-6">
+            <div className="flex gap-4 items-center mb-2">
+              <h1 className="text-[26px] font-medium  max-w-[450px] mx-auto lg:mx-0">
+                {title}
+              </h1>
+              <BsBookmark className="text-lg cursor-pointer" />
+            </div>
+            <div className="text-xl text-slate-500 font-medium">
               {price.toFixed(2).replace(".", ",")} €
             </div>
             <p className="mb-8">{description}</p>

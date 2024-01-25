@@ -12,7 +12,6 @@ function Modal() {
       className="fixed inset-0 flex items-center justify-center bg-white/80 z-50"
     >
       <div className="bg-white p-10 lg:p-20 border-2 border-slate-900 flex justify-center items-center flex-col gap-10">
-        {/* Hier füge den Inhalt deines Modals ein */}
         <p>YOU MUST SELECT A SIZE</p>
         <button
           onClick={() => setIsVisible(!isVisible)}
